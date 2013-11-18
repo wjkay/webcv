@@ -27,8 +27,8 @@ app.get("/", function(req, res) {
 });
 
 app.get("/about", function(req, res) {
-	res.render('about', {title:'about'});
-
+	res.render('template', {title:'about'});
+	res.render('about');
 });
 
 app.get("*.css", function(req, res) {
