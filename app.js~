@@ -15,20 +15,69 @@ app.use(stylus.middleware({
   debug: true,
   force: true,
 }));
+app.use(express.static('public'));
 app.use('/static', express.static(__dirname + '/public/'));
 app.use("/styles", express.static(__dirname + '/public/styles'));
+app.use('/images', express.static(__dirname + '/public/images'));
+app.use("/js", express.static(__dirname + '/public/js'));
 
 /*Server Variables */
 var ipAddress = '127.0.0.1';
 var portNum = 8080;
 
 app.get("/", function(req, res) {
-	res.render('template', {title:'Home'});
+	res.render('index', {title:'Home',
+    topMargin:'30',
+    primaryWrap:'none',
+    aboutWrap:'none',
+    blogWrap:'none',
+    cvWrap:'none',
+    workWrap:'none'
+  });
 });
 
 app.get("/about", function(req, res) {
-	res.render('template', {title:'about'});
-	res.render('about');
+	res.render('index', {title:'About',
+    topMargin:'0',
+    primaryWrap:'block',
+    aboutWrap:'block',
+    blogWrap:'none',
+    cvWrap:'none',
+    workWrap:'none'
+  });
+});
+
+app.get("/blog", function(req, res) {
+	res.render('index', {title:'Blog',
+    topMargin:'0',
+    primaryWrap:'block',
+    aboutWrap:'none',
+    blogWrap:'block',
+    cvWrap:'none',
+    workWrap:'none'
+  });
+});
+
+app.get("/cv", function(req, res) {
+	res.render('index', {title:'CV',
+    topMargin:'0',
+    primaryWrap:'block',
+    aboutWrap:'none',
+    blogWrap:'none',
+    cvWrap:'block',
+    workWrap:'none'
+  });
+});
+
+app.get("/work", function(req, res) {
+	res.render('index', {title:'Work',
+    topMargin:'0',
+    primaryWrap:'block',
+    aboutWrap:'none',
+    blogWrap:'none',
+    cvWrap:'none',
+    workWrap:'block'
+  });
 });
 
 app.get("*.css", function(req, res) {
