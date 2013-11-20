@@ -1,0 +1,20 @@
+block append content
+  h2 Work
+  hr
+  h3 Capstone Project 
+  | - 
+  a(href='http://se-projects.massey.ac.nz/ttt3/', target="_blank") Product
+  |  - 
+  a(href='https://bitbucket.org/smurrell/capstonegroup3/', target="_blank") Repository
+  |  -
+  table
+    tr
+      td
+        img(src="images/ttt75.jpg")
+      td
+        p The Capstone Project is a paper at Massey University, which aims to provide an experience as close as possile to a development evironment. In 2013, there were 3 groups of 6-7. We all shared the same project brief, which was an online multiplayer variation of Tic Tac Toe. I was the leader of Group 3. 
+        p There were many restrictions on the project, such as no plugins, external authentication, and an ability for users to program their own bots, to name a few. The main technologies that were implemented were HTML5, CSS3, jQuery, Ajax for client to server requests, and Server Sent Events (SSE) for server to clients board updates. If we did this project again I would use websockets rather than Ajax and SSE.  
+    
+  hr
+  h3 This site!
+  p The site you are currently on is completely designed and built by myself. It's built on a Node server with the  

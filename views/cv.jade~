@@ -1,0 +1,75 @@
+block append content
+  h2 Curriculum Vitae
+
+  button(class="cvmenu", value="keyskills" ) [Key Skills]
+  button(class="cvmenu", value="education" ) [Education]
+  button(class="cvmenu", value="employment" ) [Employment History]
+  button(class="cvmenu", value="referees" ) [Referees]
+  div#keyskills.cvdiv(style='display: none')
+    h4 Passion for learning 
+    p The best example of this is my Graduate Diploma in Computer Science. I jumped straight into 200 and 300 level papers. Despite having few of the introductory IT papers, I have achieved a B average to date in the 300 level IT papers. I have learnt Python, Javascript, Haskell, Prolog, SQL as well as other web languages such as PHP, HTML5, XML and CSS3. I also enjoy infrastructure-orientated work and have built custom hardware from a young age. I am very rapid at, and willing to learn from everyone to get a better understanding of the IT industry and to apply this learning to improve my abilities.
+
+    h4 Teamwork
+    p I was the leader in the Capstone Project. This project is the final project for Massey Computer Scientists and required me to work and manage five other team members ( who were all doing a 3 or 4 year bachelor qualification). I learnt a great deal about how to motivate a team and to work with others to ensure the smooth running of the project. I was a member of the Petone rowing 8s, which won the National Championships at Lake Karipiro in 2006. I had to work very hard with the other members of the team and my coach to succeed at this level.
+
+    h4 Efficient
+    p My graduate diploma has a heavy workload and tight deadlines with assignments, which means I have had to manage my time well to make sure that I get all my work done and support myself. I also tutored and marked assignments for a 100 level paper, which added significantly to my workload.
+
+    h4 Goal orientated 
+    p I am a self-starter and I enjoy working hard. I am also dedicated and challenge myself  to succeed. Jumping into 200 level papers required a high level of self-motivated learning in my own time in order to catch up to those in my class. I relish a challenge. One of my proudest academic achievements is taking Formal Methods, without any previous papers in machine learning or discrete mathematics. My grades are still pending for this paper but I have received A’s in all of the assignments so far.
+
+    h4 Reliable
+    p I have an excellent work attendance record and am always on time. I like to get the procedure right and to ensure the tasks set for me are achieved well.
+
+
+  div#education.cvdiv(style='display: none')
+    h4 2013
+    p Completed Computational Thinking for Problem Solving and Database Development. Grades pending for Artificial Intelligence, Computer Networks, Formal Methods and Software Engineering Capstone Project.
+    h4 2012
+    p Started a postgraduate diploma in advanced cellular physiology. After one semester I decided to follow my true passion in the computer science field. During the second semester I completed Declarative Programming - a personal favourite, Computational Thinking and Algorithms, and Web Application Development.
+    h4 2011
+    p Completed Leadership and Environmental Business Management in Summer School before finishing third year Nutrition and picking up a minor in Physiology, Maternal and Child Nutrition, Nutrition for Sport Performance, Human Life Cycle Physiology, Intro to Sports Science, and Exercise Physiology II. In the later half of 2011 I taught myself basic Python as well as familiarising myself with web servers.
+    h4 2010
+    p Second and third year Human Nutrition (Massey University), Metabolic Biochemistry, Nutrition and Metabolism, Adult Nutrition and Positive Ageing, Nutritional Science and Eating Behaviour, Food Chemistry for Nutrition, Physiological Control Systems, Human Genetics, Exercise Physiology.
+    h4 2009
+    p Changed majors from Food Technology to Human Nutrition.
+    h4 2008:
+    p First year Bachelor Food Technology (Honours), Massey University (Chemistry, Material Chemistry, Calculus, Statistics, Food Technology (Intro) Business Communications, Biology). Food Industry & Workplace Health and Safety course.
+    h4 2007:	
+    p NCEA Level 3 in Mathematics with Calculus, Chemistry, Biology, Physics, and English. Hutt International Boys College (Full Record of learning available upon request). CPR first aid certificate achieved, St John.
+
+
+  div#employment.cvdiv(style='display: none')
+    h4 Nov 2007 – Feb 2008:	Woolworths - Lower Hutt City
+    p In order to gain experience in a food-related area I worked full time in the Seafood department. I was responsible for sales, merchandising, preparation of the food areas, and preparation of the food itself. I also took responsibility for ordering stock and administration of the weekly gross profit. I received very good feedback on my customer service and also learnt to create visually exciting displays. After completing my basic training I was offered advanced Grocery Industry training towards Management but chose to go to university. 
+
+    h4 Mar 2008 – Nov 2008:	 Albany Pak'n Save & Foodtown -	Northshore, Auckland
+    p Needing to support myself at University, I continued to work in a Supermarket and gained experience in Liquor and General Grocery departments. I moved to the Seafood Department in Pak'n Save Albany in order to work closer to the University. I completed staff training for Health and Safety covering Food Industry Regulations and now have a strong understanding of Food Hygiene and its requirements.
+
+    h4 Nov 2009 - Feb 2009: Goulds Fine Foods - Seaview, Lower Hutt
+    p My food technology course required practical work experience so I worked at Goulds. Here I learned about commercial food processes, including design, manufacturing, health and safety, and quality control. I also researched their defrosting system, applying much of the theory from university.
+
+    h4 Feb 2009 - Nov 2011: Albany Students Association - Northshore, Auckland
+    p Again to support my studies I worked at the ASA. My role at the ASA was to provide a point of contact for student seeking information and support from the ASA, as well as selling a variety of things. I also was required to aid in the organisation of events and promotions. I left as I was heading overseas to the middle east for 2 months and would be studying in Palmerston North afterwards.
+   
+    h4 Nov 2009 - May 2010: Nosh - Mt Eden, Auckland
+    p Over the summer, the hours at the ASA job would be reduced and in order to have full time work I worked at Nish Mt Eden. Here I worked in the butchery/seafood department and storeroom. I continued to develop my ability to sell. Also I organised the way that the stock was stored for the entire store.
+
+    h4 Jul 2013 - Nov 2013: Massey University - Palmerston North
+    p I tutored for a 100 level paper (Computational Thinking and Algorithms). During this time I learnt a lot about working with other’s styles of both programming and teaching. I personally believe teaching others and finding multiple ways of explaining concepts is one the best ways of reinforcing my own learning and understanding of a topic.
+
+
+  div#referees.cvdiv(style='display: none')
+    h4 Nigel Green - General Manager: Albany Students Association - Auckland
+    h5 Nigelcharlesgreen@gmail.com
+
+    br 
+    h4 Dr Catherine McCartin - Lecturer: Massey University -  Palmerston North
+    h5 C.M.McCartin@massey.ac.nz - 0800 627 739 ext. 7849
+
+
+
+
+
+
+

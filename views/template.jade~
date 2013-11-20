@@ -1,0 +1,15 @@
+!!!5
+html
+  include head
+  body
+    div#splash(style='marginTop: 0%')
+      include header
+    div#primarywrapper(style='display: none')  
+      div#about.maindiv(style='display: none')
+        include about
+      div#cv.maindiv(style='display: none')
+        include cv
+      div#work.maindiv(style='display: none')
+        include work
+      div#content.maindiv(styles='display: none')
+        #{addtionalContent}

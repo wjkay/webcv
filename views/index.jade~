@@ -1,0 +1,17 @@
+!!!5
+html
+  include head
+  body
+    div#splash(style='margin-top: ' + topMargin + '%;')
+      include header
+    div#primarywrapper(style='display:' + primaryWrap + ';')  
+      div#about.maindiv(style='display:' + aboutWrap + ';')
+        include about
+      div#cv.maindiv(style='display:' + cvWrap + ';')
+        include cv
+      div#blog.maindiv(style='display:' + blogWrap + ';')
+        include blog
+      div#work.maindiv(style='display:' + workWrap + ';')
+        include work
+      div#add.maindiv(style='display :' + addWrap + ';')
+        include 404

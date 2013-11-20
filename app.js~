@@ -16,15 +16,13 @@ app.use(stylus.middleware({
   force: true,
 }));
 app.use(express.static('public'));
-app.use('/static', express.static(__dirname + '/public/'));
-app.use("/styles", express.static(__dirname + '/public/styles'));
-app.use('/images', express.static(__dirname + '/public/images'));
-app.use("/js", express.static(__dirname + '/public/js'));
+app.use(express.favicon("public/images/favicon.ico")); 
 
 /*Server Variables */
 var ipAddress = '127.0.0.1';
 var portNum = 8080;
 
+/*Routes*/
 app.get("/", function(req, res) {
 	res.render('index', {title:'Home',
     topMargin:'30',
@@ -32,7 +30,8 @@ app.get("/", function(req, res) {
     aboutWrap:'none',
     blogWrap:'none',
     cvWrap:'none',
-    workWrap:'none'
+    workWrap:'none',
+    addWrap:'none'
   });
 });
 
@@ -43,7 +42,8 @@ app.get("/about", function(req, res) {
     aboutWrap:'block',
     blogWrap:'none',
     cvWrap:'none',
-    workWrap:'none'
+    workWrap:'none',
+    addWrap:'none'
   });
 });
 
@@ -54,7 +54,8 @@ app.get("/blog", function(req, res) {
     aboutWrap:'none',
     blogWrap:'block',
     cvWrap:'none',
-    workWrap:'none'
+    workWrap:'none',
+    addWrap:'none'
   });
 });
 
@@ -65,7 +66,8 @@ app.get("/cv", function(req, res) {
     aboutWrap:'none',
     blogWrap:'none',
     cvWrap:'block',
-    workWrap:'none'
+    workWrap:'none',
+    addWrap:'none'
   });
 });
 
@@ -76,7 +78,8 @@ app.get("/work", function(req, res) {
     aboutWrap:'none',
     blogWrap:'none',
     cvWrap:'none',
-    workWrap:'block'
+    workWrap:'block',
+    addWrap:'none'
   });
 });
 
@@ -85,7 +88,15 @@ app.get("*.css", function(req, res) {
 });
 
 app.get("*", function(req, res) {
-	res.render('template', {title:'Uh no! Page not found!'});
+	res.render('404', {title:'Page not found!'
+    topMargin:'0',
+    primaryWrap:'block',
+    aboutWrap:'none',
+    blogWrap:'none',
+    cvWrap:'none',
+    workWrap:'none',
+    addWrap:'block'
+  });
 });
 
 http.createServer(app).listen(portNum, ipAddress);
