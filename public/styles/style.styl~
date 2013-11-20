@@ -1,0 +1,42 @@
+body
+  font 62.5%/1.5  'Cutive Mono', Arial, "Lucida Grande", "Lucida Sans", Tahoma, Verdana, sans-serif
+  text-align center
+  background-color #B5B5B5
+
+#header 
+  width 100%
+  text-align center
+  margin-left auto
+  margin-right auto
+
+#title
+  display block
+  font-size 2em 
+  margin-top -.75em
+  margin-bottom -1.5em
+  
+#navmenu 
+  display block
+  font-size 1.5em
+
+#navmenu a:link
+  text-decoration none
+  color white
+
+#navmenu a:visited
+  color white
+
+#navmenu a:hover
+  color black
+
+#primarywrapper
+  border-radius 9px
+  box-shadow 6px 6px 16px black
+  height 80%
+  overflow auto
+  max-width 600px
+  min-height 300px
+  margin-top 1em
+  margin-left auto
+  margin-right auto
+  background-color white
