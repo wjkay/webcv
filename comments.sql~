@@ -1,0 +1,8 @@
+CREATE TABLE `messages` (
+`msg_id` int(11) AUTO_INCREMENT PRIMARY KEY,
+`message` varchar(255)
+`uid_fk` int(11),
+`ip` varchar(30),
+`created` int(11),
+FOREIGN KEY(uid_fk) REFERENCES users(uid)
+)

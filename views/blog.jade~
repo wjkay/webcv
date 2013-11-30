@@ -1,0 +1,12 @@
+block extend content
+  H2 Wall
+  p
+    fieldset
+      legend What's on your mind
+      div
+        input(name='status' id='status')
+        button(onclick='updateStatus();') Submit
+  script.
+    $(document).ready(createStream())  
+  div.wall
+  
