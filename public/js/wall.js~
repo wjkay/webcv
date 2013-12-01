@@ -1,16 +1,18 @@
 // Status handler
 function updateStatus() {
-  var status = $('#statusbox').val()
-  var author = $('#namebox').val()
+  var status = $('#statusbox').val();
+  $('#statusbox').val('');
+  var author = $('#namebox').val();
   if(status === '') {
-    alert('Please enter a status!')
+    alert('Please enter a status!');
   }
-  if(!author){
-    author = 'Anonymous'
-  }
+
   else {
     $('#statusbutton').addClass('loading');
-    $('#statusbutton').html('');
+    $('#statusbutton').html('').prop("onclick", null);
+    if(!author){
+      author = 'Anonymous'
+    }
     $.ajax({
       url       : '/status',
     type        : 'PUT',
@@ -18,6 +20,7 @@ function updateStatus() {
       data      : {'status':status,'author':author},
       success   : function(res) {
         $('#statusbutton').removeClass('loading');
+        $('#statusbutton').attr('onclick','updateStatus();');
         $('#statusbutton').html('submit');
       },
       error     : function(res) {console.log(res)}

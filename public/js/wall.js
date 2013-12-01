@@ -1,14 +1,14 @@
 // Status handler
 function updateStatus() {
-  var status = $('#statusbox').val()
-  var author = $('#namebox').val()
+  var status = $('#statusbox').val();
+  var author = $('#namebox').val();
   if(status === '') {
-    alert('Please enter a status!')
+    alert('Please enter a status!');
   }
 
   else {
     $('#statusbutton').addClass('loading');
-    $('#statusbutton').html('');
+    $('#statusbutton').html('').prop("onclick", null);
     if(!author){
       author = 'Anonymous'
     }
@@ -18,7 +18,9 @@ function updateStatus() {
       dataType  : 'text',
       data      : {'status':status,'author':author},
       success   : function(res) {
+        $('#statusbox').val('');
         $('#statusbutton').removeClass('loading');
+        $('#statusbutton').attr('onclick','updateStatus();');
         $('#statusbutton').html('submit');
       },
       error     : function(res) {console.log(res)}
