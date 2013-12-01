@@ -1,6 +1,6 @@
 // Status handler
 function updateStatus() {
-  var status = $('#status').val()
+  var status = $('#statusbox').val()
   if(status === '') {
     alert('Please enter a status!')
   }
@@ -28,23 +28,23 @@ function createStream() {
     if (event.data !== null && rawStatuses !== event.data) {
       rawStatuses = event.data;
       statusList = JSON.parse(rawStatuses);
-      $('.wall').html('')
-      for (i = 0; i < statusList.length; i++) { 
+      $('#wall').html('')
+      for (i = statusList.length-1; i >= 0; i--) { 
         var container = document.createElement('div');
         var media = document.createElement('div');
         var content = document.createElement('div');
-        var footer = document.createElement('span');
+        var header = document.createElement('span');
         container.setAttribute('class', 'status');
-        media.setAttribute('class', 'media');
-        footer.setAttribute('class', 'time');
+        header.setAttribute('class', 'time');
         content.innerHTML = statusList[i].status
-        footer.innerHTML = statusList[i].created
+        header.innerHTML = statusList[i].created
+        container.appendChild(header)
         container.appendChild(content)
-        container.appendChild(footer)
-        $('.wall').append(container)
+        $('#wall').append(container)
+        $('#wall').append(document.createElement('hr'));
       }
     }
   };
 };
 
-// OGP Parser
+

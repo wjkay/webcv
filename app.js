@@ -93,9 +93,16 @@ app.put("/status", function(req, res) {
   if (statusURLs) {
     statusURLs.forEach(function(url) {
       var ogdata = new readogp(url, function(result) {
-        status = status + '<div class="og"><img src="'+result.image+'"/><h4>'+result.title+'</h4>'+result.description
-        console.log(status)
-
+        console.log(result)
+        if (result.video) {
+          status = status + '<div class="og"><div class="media"><embed type="application/x-shockwave-flash"  src="'+result.video.url+'" allowfullscreen="true"></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div>'
+        }
+        else if (result.image) {
+          status = status + '<div class="og"><div class="media"><img src="'+result.image+'"/></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div>'
+        }
+        else {
+          status = status
+        }
         sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"', 1, '"+new Date()+"')",
           function(err, result){
             if(err) {
