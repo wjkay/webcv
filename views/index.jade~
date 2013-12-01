@@ -14,4 +14,4 @@ html
       div#work.maindiv(style='display:' + workWrap + ';')
         include work
       div#add.maindiv(style='display :' + addWrap + ';')
-        include 404
+        block add

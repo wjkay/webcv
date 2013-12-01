@@ -7,6 +7,9 @@
     "jade": "*",
     "stylus": "*",
     "nib": "*",
-    "mssql": "*"
+    "mssql": "*",
+    "sse":"*",
+    "cheerio":"*",
+    "request":"*"
   }
 }

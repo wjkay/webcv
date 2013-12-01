@@ -8,5 +8,8 @@
     "stylus": "*",
     "nib": "*",
     "mssql": "*",
+    "sse":"*",
+    "cheerio":"*",
+    "request":"*",
   }
 }

@@ -1,8 +1,6 @@
-var  mssql       = require('mssql');
-
+var  mssql = require('mssql');
+module.exports = connectToSQL;
 /*Setup SQL Database*/
-
-
 function connectToSQL(config) {
   var sqlCon  = new mssql.Connection(config, function(err){
     if(err) {
@@ -36,7 +34,7 @@ function connectToSQL(config) {
         "WHERE name='statuses') "+
         "CREATE TABLE statuses ("+
         "statusid int IDENTITY(1,1) PRIMARY KEY,"+
-        "status varchar(255),"+
+        "status varchar(max),"+
         "uid_fk int,"+
         "created varchar(255),"+
         "FOREIGN KEY(uid_fk) REFERENCES users(uid))",
