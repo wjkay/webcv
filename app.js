@@ -32,7 +32,7 @@ app.use(express.favicon("public/images/favicon.ico"));
 
 /*Server Variables*/
 var ipAddress   = '127.0.0.1',
-    portNum     = 8080;
+    portNum     = process.env.PORT || 8080;
 var sqlConfig = {server:'willscv.mssql.somee.com', user:'will', password:'willtest', database:'willscv'}
 var sqlCon = new setupsql(sqlConfig);
 
