@@ -65,7 +65,7 @@ request.query("SELECT * FROM statuses", function(err, result){
 
 
 server = http.createServer(app)
-server.listen(portNum, ipAddress, function() {
+server.listen(portNum, function() {
   var sseCon = new sse(server);
   sseCon.on('connection', function(client) {
     var eventStream = setInterval(function() {
