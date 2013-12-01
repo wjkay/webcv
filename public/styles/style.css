@@ -156,6 +156,9 @@ h3 {
 .media img {
   width: 250px;
 }
+.media embed {
+  width: 250px;
+}
 .time {
   font: arial;
   font-size: 0.75em;
