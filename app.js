@@ -37,17 +37,17 @@ var sqlConfig = {server:'willscv.mssql.somee.com', user:'will', password:'willte
 var sqlCon = new setupsql(sqlConfig);
 
 /*Routes*/
-app.get("/", function(req, res) {res.render('index', {title:'Home', topMargin:'30', primaryWrap:'none', aboutWrap:'none', blogWrap:'none', cvWrap:'none', workWrap:'none', addWrap:'none'});});
+app.get("/", function(req, res) {res.render('index', {title:'Home', topMargin:'30', primaryWrap:'none', aboutWrap:'none', wallWrap:'none', cvWrap:'none', workWrap:'none', addWrap:'none'});});
 
-app.get("/about", function(req, res) {res.render('index', {title:'About', topMargin:'0', primaryWrap:'block', aboutWrap:'block', blogWrap:'none', cvWrap:'none', workWrap:'none', addWrap:'none'});});
+app.get("/about", function(req, res) {res.render('index', {title:'About', topMargin:'0', primaryWrap:'block', aboutWrap:'block', wallWrap:'none', cvWrap:'none', workWrap:'none', addWrap:'none'});});
 
-app.get("/wall", function(req, res) {res.render('index', {title:'Wall', topMargin:'0', primaryWrap:'block', aboutWrap:'none', blogWrap:'block', cvWrap:'none', workWrap:'none', addWrap:'none', blogid:'id0001'});});
+app.get("/wall", function(req, res) {res.render('index', {title:'Wall', topMargin:'0', primaryWrap:'block', aboutWrap:'none', wallWrap:'block', cvWrap:'none', workWrap:'none', addWrap:'none'});});
 
-app.get("/cv", function(req, res) {res.render('index', {title:'CV', topMargin:'0', primaryWrap:'block', aboutWrap:'none', blogWrap:'none', cvWrap:'block', workWrap:'none', addWrap:'none'});});
+app.get("/cv", function(req, res) {res.render('index', {title:'CV', topMargin:'0', primaryWrap:'block', aboutWrap:'none', wallWrap:'none', cvWrap:'block', workWrap:'none', addWrap:'none'});});
 
-app.get("/work", function(req, res) {res.render('index', {title:'Work', topMargin:'0', primaryWrap:'block', aboutWrap:'none', blogWrap:'none', cvWrap:'none', workWrap:'block', addWrap:'none'});});
+app.get("/work", function(req, res) {res.render('index', {title:'Work', topMargin:'0', primaryWrap:'block', aboutWrap:'none', wallWrap:'none', cvWrap:'none', workWrap:'block', addWrap:'none'});});
 
-app.get("*", function(req, res) {res.render('404', {title:'Page not found!', topMargin:'0', primaryWrap:'block', aboutWrap:'none', blogWrap:'none', cvWrap:'none', workWrap:'none', addWrap:'block'});});
+app.get("*", function(req, res) {res.render('404', {title:'Page not found!', topMargin:'0', primaryWrap:'block', aboutWrap:'none', wallWrap:'none', cvWrap:'none', workWrap:'none', addWrap:'block'});});
 
 app.get("*.css", function(req, res) {res.header("Content-type", "text/css");});
 
@@ -86,6 +86,7 @@ geturl = new RegExp(
 // Status Handler
 app.put("/status", function(req, res) {
   var status = req.body.status
+  var author = req.body.author
   var sqlrequest = new mssql.Request(sqlCon);
   
   // Check if URL is in status
@@ -103,7 +104,7 @@ app.put("/status", function(req, res) {
         else {
           status = status
         }
-        sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"', 1, '"+new Date()+"')",
+        sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"', '"+author+"', '"+new Date()+"')",
           function(err, result){
             if(err) {
               console.log(err);
@@ -126,7 +127,7 @@ app.put("/status", function(req, res) {
     })
   }
   else {
-    sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"', 1, '"+new Date()+"')",
+    sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"','"+author+"', '"+new Date()+"')",
     function(err, result){
       if(err) {
         console.log(err);

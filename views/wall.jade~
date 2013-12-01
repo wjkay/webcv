@@ -1,12 +1,13 @@
 block extend content
   H2 Wall
-  p
-    fieldset
-      legend B What's on your mind?
-      div
-        textarea(name='status' id='statusbox' placeholder='Type here' autofocus maxlength='2000' spellcheck)
-        button(onclick='updateStatus();' id='statusbutton') Submit
+  fieldset
+    legend <b> What's on your mind?</b>
+    div(class="spinner")
+    div#statuswrap
+      textarea(name='status' id='statusbox' placeholder='Type here' autofocus maxlength='2000' spellcheck)
+      textarea(name='aurthor' id='namebox' placeholder='Your name (optional)' maxlength='70')
+      button(onclick='updateStatus();' id='statusbutton') Submit
   script.
     $(document).ready(createStream())  
-  div#wall
+  div#statuswall
   

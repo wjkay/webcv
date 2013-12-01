@@ -10,6 +10,7 @@ function connectToSQL(config) {
       console.log("Database connection \tOK");
       
       // Create Tables
+/*
       var request = new mssql.Request(sqlCon);
       request.query("IF NOT EXISTS ("+
         "SELECT * FROM sys.tables "+
@@ -21,13 +22,10 @@ function connectToSQL(config) {
         "email varchar(255) UNIQUE)",
       function(err, result){
         if(err) {
-          console.log(err);
+          console.log('Table users: '+err);
         } 
-        else {
-          console.log("Table users \t\tOK");
-        }
       });
-
+*/
       var request = new mssql.Request(sqlCon);
       request.query("IF NOT EXISTS ("+
         "SELECT * FROM sys.tables "+
@@ -35,18 +33,16 @@ function connectToSQL(config) {
         "CREATE TABLE statuses ("+
         "statusid int IDENTITY(1,1) PRIMARY KEY,"+
         "status varchar(max),"+
-        "uid_fk int,"+
-        "created varchar(255),"+
-        "FOREIGN KEY(uid_fk) REFERENCES users(uid))",
+        "author varchar(70),"+
+        //"uid_fk int,"+
+        "created varchar(255))",//,",+
+        //"FOREIGN KEY(uid_fk) REFERENCES users(uid))",
       function(err, result){
         if(err) {
-          console.log(err);
+          console.log('Table statuses: '+err);
         } 
-        else {
-          console.log("Table statuses \t\tOK");
-        }
       });
-
+/*
       var request = new mssql.Request(sqlCon);
       request.query("IF NOT EXISTS ("+
         "SELECT * FROM sys.tables "+
@@ -60,11 +56,8 @@ function connectToSQL(config) {
         "FOREIGN KEY(statusid_fk) REFERENCES statuses(statusid))",
       function(err, result){
         if(err) {
-          console.log(err);
+          console.log('Table comments: '+err);
         } 
-        else {
-          console.log("Table comments \t\tOK");
-        }
       });
 
       var request = new mssql.Request(sqlCon);
@@ -74,12 +67,9 @@ function connectToSQL(config) {
         "('Will','willtest','will.kehayioff@gmail.com')",
       function(err, result){
         if(err) {
-          console.log(err);
+          console.log('Insert Will: '+err);
         } 
-        else {
-          console.log("User Will \t\tOK");
-        }
-      });
+      });*/
     }
   });
   return sqlCon;

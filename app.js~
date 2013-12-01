@@ -37,17 +37,17 @@ var sqlConfig = {server:'willscv.mssql.somee.com', user:'will', password:'willte
 var sqlCon = new setupsql(sqlConfig);
 
 /*Routes*/
-app.get("/", function(req, res) {res.render('index', {title:'Home', topMargin:'30', primaryWrap:'none', aboutWrap:'none', blogWrap:'none', cvWrap:'none', workWrap:'none', addWrap:'none'});});
+app.get("/", function(req, res) {res.render('index', {title:'Home', topMargin:'30', primaryWrap:'none', aboutWrap:'none', wallWrap:'none', cvWrap:'none', workWrap:'none', addWrap:'none'});});
 
-app.get("/about", function(req, res) {res.render('index', {title:'About', topMargin:'0', primaryWrap:'block', aboutWrap:'block', blogWrap:'none', cvWrap:'none', workWrap:'none', addWrap:'none'});});
+app.get("/about", function(req, res) {res.render('index', {title:'About', topMargin:'0', primaryWrap:'block', aboutWrap:'block', wallWrap:'none', cvWrap:'none', workWrap:'none', addWrap:'none'});});
 
-app.get("/wall", function(req, res) {res.render('index', {title:'Wall', topMargin:'0', primaryWrap:'block', aboutWrap:'none', blogWrap:'block', cvWrap:'none', workWrap:'none', addWrap:'none', blogid:'id0001'});});
+app.get("/wall", function(req, res) {res.render('index', {title:'Wall', topMargin:'0', primaryWrap:'block', aboutWrap:'none', wallWrap:'block', cvWrap:'none', workWrap:'none', addWrap:'none'});});
 
-app.get("/cv", function(req, res) {res.render('index', {title:'CV', topMargin:'0', primaryWrap:'block', aboutWrap:'none', blogWrap:'none', cvWrap:'block', workWrap:'none', addWrap:'none'});});
+app.get("/cv", function(req, res) {res.render('index', {title:'CV', topMargin:'0', primaryWrap:'block', aboutWrap:'none', wallWrap:'none', cvWrap:'block', workWrap:'none', addWrap:'none'});});
 
-app.get("/work", function(req, res) {res.render('index', {title:'Work', topMargin:'0', primaryWrap:'block', aboutWrap:'none', blogWrap:'none', cvWrap:'none', workWrap:'block', addWrap:'none'});});
+app.get("/work", function(req, res) {res.render('index', {title:'Work', topMargin:'0', primaryWrap:'block', aboutWrap:'none', wallWrap:'none', cvWrap:'none', workWrap:'block', addWrap:'none'});});
 
-app.get("*", function(req, res) {res.render('404', {title:'Page not found!', topMargin:'0', primaryWrap:'block', aboutWrap:'none', blogWrap:'none', cvWrap:'none', workWrap:'none', addWrap:'block'});});
+app.get("*", function(req, res) {res.render('404', {title:'Page not found!', topMargin:'0', primaryWrap:'block', aboutWrap:'none', wallWrap:'none', cvWrap:'none', workWrap:'none', addWrap:'block'});});
 
 app.get("*.css", function(req, res) {res.header("Content-type", "text/css");});
 
@@ -95,10 +95,10 @@ app.put("/status", function(req, res) {
       var ogdata = new readogp(url, function(result) {
         console.log(result)
         if (result.video) {
-          status = status + '<div class="og"><div class="media"><embed type="application/x-shockwave-flash"  src="'+result.video.url+'" allowfullscreen="true"></div><div class="content"><h4><a ref="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div>'
+          status = status + '<div class="og"><div class="media"><embed type="application/x-shockwave-flash"  src="'+result.video.url+'" allowfullscreen="true"></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div>'
         }
         else if (result.image) {
-          status = status + '<div class="og"><div class="media"><img src="'+result.image+'"/></div><div class="content"><h4><a ref="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div>'
+          status = status + '<div class="og"><div class="media"><img src="'+result.image+'"/></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div>'
         }
         else {
           status = status

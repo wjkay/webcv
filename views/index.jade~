@@ -9,7 +9,7 @@ html
         include about
       div#cv.maindiv(style='display:' + cvWrap + ';')
         include cv
-      div#blog.maindiv(style='display:' + blogWrap + ';')
+      div#blog.maindiv(style='display:' + wallWrap + ';')
         include wall
       div#work.maindiv(style='display:' + workWrap + ';')
         include work

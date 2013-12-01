@@ -29,11 +29,11 @@ body {
 }
 button {
   font: 1em 'Cutive Mono', Arial, "Lucida Grande", "Lucida Sans", Tahoma, Verdana, sans-serif;
-  border: none;
 }
 #navmenu button {
   background-color: #fff;
   color: #b5b5b5;
+  border: none;
 }
 #navmenu button:hover {
   color: #000;
@@ -98,17 +98,38 @@ h3 {
   max-height: 100%;
   overflow: auto;
 }
+#statuswrap {
+  display: table;
+  width: 100%;
+}
 #statusbox {
-  width: 84%;
+  display: table-cell;
+  width: 65%;
   max-width: 84%;
+  height: 3em;
   float: left;
   overflow: visable;
+}
+#namebox {
+  display: table-cell;
+  width: 17%;
+  max-width: 17%;
   height: 3em;
+  max-height: 3em;
+  overflow: visable;
 }
 #statusbutton {
-  width: 15%;
+  display: table-cell;
+  width: 14%;
   height: 3em;
-  background-color: light-grey;
+  float: right;
+  border: 1px;
+}
+.loading {
+  background: url("/images/loading.gif");
+  background-repeat: no-repeat round;
+  background-position: 50% 50%;
+  background-size: auto 100%;
 }
 .status {
   background-color: #fff;
