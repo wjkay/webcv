@@ -60,8 +60,6 @@ request.query("SELECT * FROM statuses", function(err, result){
   } 
   else{
     sseData = result
-    console.log(sseData)
-    console.log('Please')
   }
 });
 
@@ -69,11 +67,7 @@ request.query("SELECT * FROM statuses", function(err, result){
 server = http.createServer(app)
 server.listen(portNum, ipAddress, function() {
   var sseCon = new sse(server);
-  
   sseCon.on('connection', function(client) {
-    console.log("Client connected")
-    console.log(sseData)
-    client.send(JSON.stringify(sseData))
     var eventStream = setInterval(function() {
       if(typeof sseData !== 'undefined'){
         client.send(JSON.stringify(sseData))
@@ -81,7 +75,6 @@ server.listen(portNum, ipAddress, function() {
     }, 200);
   });
   sseCon.on('close',function() {
-    console.log('Clearing interval')
     clearInterval(eventStream);
   });
 });
@@ -101,6 +94,8 @@ app.put("/status", function(req, res) {
     statusURLs.forEach(function(url) {
       var ogdata = new readogp(url, function(result) {
         status = status + '<div class="og"><img src="'+result.image+'"/><h4>'+result.title+'</h4>'+result.description
+        console.log(status)
+
         sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"', 1, '"+new Date()+"')",
           function(err, result){
             if(err) {

@@ -67,7 +67,7 @@ request.query("SELECT * FROM statuses", function(err, result){
 
 
 server = http.createServer(app)
-server.listen(process.env.VCAP_APP_PORT, 3000, function() {
+server.listen(portNum, ipAddress, function() {
   var sseCon = new sse(server);
   
   sseCon.on('connection', function(client) {
