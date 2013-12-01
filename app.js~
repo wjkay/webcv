@@ -86,6 +86,7 @@ geturl = new RegExp(
 // Status Handler
 app.put("/status", function(req, res) {
   var status = req.body.status
+  var author = req.body.author
   var sqlrequest = new mssql.Request(sqlCon);
   
   // Check if URL is in status
@@ -103,7 +104,7 @@ app.put("/status", function(req, res) {
         else {
           status = status
         }
-        sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"', 1, '"+new Date()+"')",
+        sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"', '"+author+"', '"+new Date()+"')",
           function(err, result){
             if(err) {
               console.log(err);
@@ -126,7 +127,7 @@ app.put("/status", function(req, res) {
     })
   }
   else {
-    sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"', 1, '"+new Date()+"')",
+    sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"','"+author+"', '"+new Date()+"')",
     function(err, result){
       if(err) {
         console.log(err);

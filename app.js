@@ -54,14 +54,17 @@ app.get("*.css", function(req, res) {res.header("Content-type", "text/css");});
 // SSE for wall
 var sseData
 var request = new mssql.Request(sqlCon);
-request.query("SELECT * FROM statuses", function(err, result){
-  if(err) {
-    console.log(err);
-  } 
-  else{
-    sseData = result
-  }
-});
+var sqlpoll = setInterval(function() {
+  request.query("SELECT * FROM statuses", function(err, result){
+    if(err) {
+      console.log(err);
+    } 
+    else{
+      sseData = result
+    }
+  });
+}, 100)
+
 
 
 server = http.createServer(app)
