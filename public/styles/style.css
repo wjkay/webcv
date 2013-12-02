@@ -32,7 +32,7 @@ button {
 }
 #navmenu button {
   background-color: #fff;
-  color: #b5b5b5;
+  color: #24d627;
   border: none;
 }
 #navmenu button:hover {
@@ -63,6 +63,7 @@ button {
   overflow: auto;
 }
 #primarywrapper p {
+  text-align: left;
   font-family: Arial;
   font-size: 0.85em;
 }

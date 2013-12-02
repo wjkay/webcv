@@ -34,7 +34,7 @@ button
 
 #navmenu button
   background-color white
-  color #B5B5B5
+  color #24D627
   border none
 
 #navmenu button:hover
@@ -65,6 +65,7 @@ button
   overflow auto
 
 #primarywrapper p
+  text-align left
   font-family Arial
   font-size .85em
 
@@ -99,6 +100,10 @@ h3
 #wall
   max-height 100% 
   overflow auto
+  text-align left
+
+#wall h1 h2 h3 h4 h5
+  text-align center
 
 #statuswrap
   display table 
@@ -159,9 +164,12 @@ h3
 
 .media
   float left
-  width 250px
+
 
 .media img
+  width 250px
+
+.media embed
   width 250px
  
 .time
