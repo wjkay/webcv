@@ -96,37 +96,55 @@ app.put("/status", function(req, res) {
   if (statusURLs) {
     statusURLs.forEach(function(url) {
       var ogdata = new readogp(url, function(result) {
-        console.log(result)
         if (result.video) {// Embed/video formatting
-          status = status + '<div class="og"><div class="media"><embed type="application/x-shockwave-flash"  src="'+result.video.url+'" allowfullscreen="true"></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div>'
+          status = status + '<div class="og"><div class="media"><embed type="application/x-shockwave-flash"  src="'+result.video.url+'" allowfullscreen="true"></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div></div>'
         }
         else if (result.image) {// Img formatting
           status = status + '<div class="og"><div class="media"><img src="'+result.image+'"/></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div>'
         }
+        // Save Status to MSSQL and force update SSE data
+        sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"','"+author+"', '"+new Date()+"')",
+        function(err, result){
+          if(err) {
+            console.log(err);
+            res.send(500);
+          } 
+          else {//Return Ok and update table
+            res.send(200);
+            sqlrequest.query("SELECT * FROM statuses", function(err, result){
+              if(err) {
+                console.log(err);
+              } 
+              else{
+                sseData = result
+              }
+            });
+          }
+        });
       })
     })
   }
-  sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"','"+author+"', '"+new Date()+"')",
-  function(err, result){
-    if(err) {
-      console.log(err);
-      res.send(500);
-    } 
-    else {//Return Ok and update table
-      res.send(200);
-      sqlrequest.query("SELECT * FROM statuses", function(err, result){
-        if(err) {
-          console.log(err);
-        } 
-        else{
-          sseData = result
-        }
-      });
-    }
-  });
+  else {
+    // Crude dupe, should pulls this function out into readogp library
+    sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"','"+author+"', '"+new Date()+"')",
+    function(err, result){
+      if(err) {
+        console.log(err);
+        res.send(500);
+      } 
+      else {//Return Ok and update table
+        res.send(200);
+        sqlrequest.query("SELECT * FROM statuses", function(err, result){
+          if(err) {
+            console.log(err);
+          } 
+          else{
+            sseData = result
+          }
+        });
+      }
+    });
+  }
 });
-
-
-
 
 console.log('Server running at '+ipAddress+':'+portNum);
