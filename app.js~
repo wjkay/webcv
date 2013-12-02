@@ -54,35 +54,37 @@ app.get("*.css", function(req, res) {res.header("Content-type", "text/css");});
 // SSE for wall
 var sseData
 var request = new mssql.Request(sqlCon);
-request.query("SELECT * FROM statuses", function(err, result){
-  if(err) {
-    console.log(err);
-  } 
-  else{
-    sseData = result
-  }
-});
+var sqlpoll = setInterval(function() {
+  request.query("SELECT * FROM statuses", function(err, result){
+    if(err) {
+      console.log(err);
+    } 
+    else{
+      sseData = result
+    }
+  });
+}, 100)
 
 
+/* Initiate Server*/
 server = http.createServer(app)
 server.listen(portNum, function() {
-  var sseCon = new sse(server);
+  var sseCon = new sse(server); // Create SSE listener
   sseCon.on('connection', function(client) {
-    var eventStream = setInterval(function() {
+    var eventStream = setInterval(function() { // SSE Stream
       if(typeof sseData !== 'undefined'){
         client.send(JSON.stringify(sseData))
       }
-    }, 200);
+    }, 200); // SSE Interval
   });
   sseCon.on('close',function() {
     clearInterval(eventStream);
   });
 });
 
-geturl = new RegExp(
-          "(^|[ \t\r\n])((ftp|http|https|gopher|mailto|news|nntp|telnet|wais|file|prospero|aim|webcal):(([A-Za-z0-9$_.+!*(),;/?:@&~=-])|%[A-Fa-f0-9]{2}){2,}(#([a-zA-Z0-9][a-zA-Z0-9$_.+!*(),;/?:@&~=%-]*))?([A-Za-z0-9$_+!*();/?:~-]))"
-         ,"g"
-       );
+geturl = new RegExp(//Regex for url detection - Needs improvement
+          "(^|[ \t\r\n])((http|https):(([A-Za-z0-9$_.+!*(),;/?:@&~=-])|%[A-Fa-f0-9]{2}){2,}(#([a-zA-Z0-9][a-zA-Z0-9$_.+!*(),;/?:@&~=%-]*))?([A-Za-z0-9$_+!*();/?:~-]))","g");
+
 // Status Handler
 app.put("/status", function(req, res) {
   var status = req.body.status
@@ -95,57 +97,33 @@ app.put("/status", function(req, res) {
     statusURLs.forEach(function(url) {
       var ogdata = new readogp(url, function(result) {
         console.log(result)
-        if (result.video) {
+        if (result.video) {// Embed/video formatting
           status = status + '<div class="og"><div class="media"><embed type="application/x-shockwave-flash"  src="'+result.video.url+'" allowfullscreen="true"></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div>'
         }
-        else if (result.image) {
+        else if (result.image) {// Img formatting
           status = status + '<div class="og"><div class="media"><img src="'+result.image+'"/></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div>'
         }
-        else {
-          status = status
-        }
-        sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"', '"+author+"', '"+new Date()+"')",
-          function(err, result){
-            if(err) {
-              console.log(err);
-              res.send(500);
-            } 
-            else {//Return Ok and update table
-              res.send(200);
-              sqlrequest.query("SELECT * FROM statuses", function(err, result){
-                if(err) {
-                  console.log(err);
-                } 
-                else{
-                  sseData = result
-                }
-              });
-            }
-          });
-
       })
     })
   }
-  else {
-    sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"','"+author+"', '"+new Date()+"')",
-    function(err, result){
-      if(err) {
-        console.log(err);
-        res.send(500);
-      } 
-      else {//Return Ok and update table
-        res.send(200);
-        sqlrequest.query("SELECT * FROM statuses", function(err, result){
-          if(err) {
-            console.log(err);
-          } 
-          else{
-            sseData = result
-          }
-        });
-      }
-    });
-  }
+  sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"','"+author+"', '"+new Date()+"')",
+  function(err, result){
+    if(err) {
+      console.log(err);
+      res.send(500);
+    } 
+    else {//Return Ok and update table
+      res.send(200);
+      sqlrequest.query("SELECT * FROM statuses", function(err, result){
+        if(err) {
+          console.log(err);
+        } 
+        else{
+          sseData = result
+        }
+      });
+    }
+  });
 });
 
 
