@@ -63,7 +63,7 @@ var sqlpoll = setInterval(function() {
       sseData = result
     }
   });
-}, 1000)
+}, 100)
 
 
 /* Initiate Server*/
@@ -94,33 +94,38 @@ app.put("/status", function(req, res) {
   // Check if URL is in status
   var statusURLs = status.match(geturl)
   if (statusURLs) {
+    var i = 0;
     statusURLs.forEach(function(url) {
       var ogdata = new readogp(url, function(result) {
+        i++;
         if (result.video) {// Embed/video formatting
           status = status + '<div class="og"><div class="media"><embed type="application/x-shockwave-flash"  src="'+result.video.url+'" allowfullscreen="true"></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div></div>'
         }
         else if (result.image) {// Img formatting
           status = status + '<div class="og"><div class="media"><img src="'+result.image+'"/></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div>'
         }
-        // Save Status to MSSQL and force update SSE data
-        sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"','"+author+"', '"+new Date()+"')",
-        function(err, result){
-          if(err) {
-            console.log(err);
-            res.send(500);
-          } 
-          else {//Return Ok and update table
-            res.send(200);
-            sqlrequest.query("SELECT * FROM statuses", function(err, result){
-              if(err) {
-                console.log(err);
-              } 
-              else{
-                sseData = result
-              }
-            });
-          }
-        });
+        
+        if (i == statusURLs.length) {
+          // Save Status to MSSQL and force update SSE data
+          sqlrequest.query("INSERT INTO statuses VALUES ('"+status+"','"+author+"', '"+new Date()+"')",
+          function(err, result){
+            if(err) {
+              console.log(err);
+              res.send(500);
+            } 
+            else {//Return Ok and update table
+              res.send(200);
+              sqlrequest.query("SELECT * FROM statuses", function(err, result){
+                if(err) {
+                  console.log(err);
+                } 
+                else{
+                  sseData = result
+                }
+              });
+            }
+          });
+        }
       })
     })
   }

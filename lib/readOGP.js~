@@ -1,6 +1,6 @@
 var request = require('request');
 var cheerio = require('cheerio');
-module.exports = getOGP;
+module.exports = parseUrls;
 
 function getOGP(url, callback) {
   request(url, function (error, response, body) {
@@ -32,9 +32,24 @@ function getOGP(url, callback) {
           }
         }
       })
-      callback(JSON.stringify(result));
+      callback(result);
     }
   })
 }
 
+function parseUrls(status, statusURLs, callback) {
+  statusURLs.forEach(function(url) {
+    var ogdata = getOGP(url, function(result) {
+      if (result.video) {// Embed/video formatting
+        status = status + '<div class="og"><div class="media"><embed type="application/x-shockwave-flash"  src="'+result.video.url+'" allowfullscreen="true"></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div></div>'
+      }
+      else if (result.image) {// Img formatting
+        status = status + '<div class="og"><div class="media"><img src="'+result.image+'"/></div><div class="content"><h4><a href="'+result.url+'">'+result.title+'</a></h4><p>'+result.description+'</div>'
+      }
+      console.log(status)
+    })
+    callback(status);
+  })
+  
+}
 
