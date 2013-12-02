@@ -56,7 +56,7 @@ function createStream() {
 };
 
 function timeParser(date) {
-  var difference = ((Date.now() - Date.parse(date))/100)
+  var difference = ((Date.now() - Date.parse(date))/1000)
   if (difference < 20) {
     return 'Just now'
   }

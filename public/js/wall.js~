@@ -1,7 +1,6 @@
 // Status handler
 function updateStatus() {
   var status = $('#statusbox').val();
-  $('#statusbox').val('');
   var author = $('#namebox').val();
   if(status === '') {
     alert('Please enter a status!');
@@ -19,6 +18,7 @@ function updateStatus() {
       dataType  : 'text',
       data      : {'status':status,'author':author},
       success   : function(res) {
+        $('#statusbox').val('');
         $('#statusbutton').removeClass('loading');
         $('#statusbutton').attr('onclick','updateStatus();');
         $('#statusbutton').html('submit');
